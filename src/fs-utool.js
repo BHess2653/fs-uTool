@@ -10,7 +10,5 @@ exports.debug = (title, obj) => {
     error: 'red',
   });
   const output = seperator + title + JSON.stringify(obj) + '\n' + time + seperator;
-
     console.log(output);
-
 };
