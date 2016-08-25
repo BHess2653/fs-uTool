@@ -29,6 +29,9 @@ gulp.task('tag', () => {
   patch = version.version.substring(indicies[1] + 1, version.version.length);
   minor = version.version.substring(indicies[0] + 1, indicies[1]);
   major = version.version.substring(indicies[0], indicies[0] - version.version.length);
+  console.log('patch out of if: ' + patch);
+  console.log('minor out of if: ' + minor);
+  console.log('major out of it: ' + major);
 
   console.log('version number out of if: ' + major + '.' + minor + '.' + patch);
 
