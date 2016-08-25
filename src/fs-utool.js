@@ -9,6 +9,6 @@ exports.debug = (title, obj) => {
     delete: 'red',
     error: 'red',
   });
-  const output = seperator + title + JSON.stringify(obj) + '\n' + time + seperator;
+  const output = seperator + title + '\n' + JSON.stringify(obj) + '\n' + time + seperator;
     console.log(output);
 };
