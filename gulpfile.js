@@ -62,10 +62,7 @@ gulp.task('tag', () => {
   git.tag('v' + version, argv.message, { args: '-a' }, (err) => {
     if (err) throw err;
   });
-  return gulp
-        .src(['./package.json'])
-        .pipe(bump(packageBump.version))
-        .pipe(gulp.dest('./'));
+
 });
 
 
