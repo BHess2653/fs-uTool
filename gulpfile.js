@@ -1,5 +1,6 @@
 'use strict';
-// Sweet god I did the thing
+// Initializes gulp and sets it to an instance of gulp
+const gulp = require('gulp');
 // Initializes variable git and sets it to an instance of gulp-git
 const git = require('gulp-git');
 // Initializes variable argv and sets it to an instance of yargs
