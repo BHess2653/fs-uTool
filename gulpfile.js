@@ -26,9 +26,9 @@ gulp.task('tag', () => {
       indicies.push(i);
     }
   }
-  patch = version.substring(indicies[1] + 1, version.length);
-  minor = version.substring(indicies[0] + 1, indicies[1]);
-  major = version.substring(indicies[0], indicies[0] - version.length);
+  patch = version.version.substring(indicies[1] + 1, version.length);
+  minor = version.version.substring(indicies[0] + 1, indicies[1]);
+  major = version.version.substring(indicies[0], indicies[0] - version.length);
 
   console.log('version number out of if: ' + major + '.' + minor + '.' + patch);
 
