@@ -22,13 +22,13 @@ gulp.task('tag', () => {
 
   const indicies = [];
   for (let i = 0; i < version.length; i++) {
-    if (version[i] === '.') {
+    if (version.version[i] === '.') {
       indicies.push(i);
     }
   }
-  patch = version.version.substring(indicies[1] + 1, version.length);
+  patch = version.version.substring(indicies[1] + 1, version.version.length);
   minor = version.version.substring(indicies[0] + 1, indicies[1]);
-  major = version.version.substring(indicies[0], indicies[0] - version.length);
+  major = version.version.substring(indicies[0], indicies[0] - version.version.length);
 
   console.log('version number out of if: ' + major + '.' + minor + '.' + patch);
 
