@@ -59,6 +59,7 @@ gulp.task('tag', () => {
   }
   version = major + '.' + minor + '.' + patch;
   packageBump.version = version;
+  console.log(packageBump.version);
   git.tag('v' + version, argv.message, { args: '-a' }, (err) => {
     if (err) throw err;
   });
