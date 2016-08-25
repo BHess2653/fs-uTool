@@ -64,11 +64,9 @@ gulp.task('tag', () => {
     if (err) throw err;
   });
 
-  return gulp
-          .src(['./package.json'])
-          .pipe(bump(packageBump.version))
-          
-
+  gulp.src('./*.json')
+    .pipe(bump({version: packageBump.version}))
+    .pipe(gulp.dest('./'));
 
 });
 
