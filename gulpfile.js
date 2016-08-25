@@ -67,7 +67,7 @@ gulp.task('tag', () => {
   return gulp
           .src(['./package.json'])
           .pipe(bump(packageBump.version))
-          .pipe(gulp.dest('path to your root directory'));
+          
 
 
 });
