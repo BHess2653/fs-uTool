@@ -6,7 +6,7 @@ const argv = require('yargs').argv;
 const packageJSON = require('./package.json');
 const runSequence = require('run-sequence');
 const bump = require('gulp-bump');
-let version = packageJSON.version;
+let version = {};
 
 gulp.task('default', () => {
   runSequence('tag', 'pushTag');
@@ -15,6 +15,7 @@ gulp.task('default', () => {
 
 gulp.task('tag', () => {
   // Major, Minor, patch
+  version.version = packageJSON.version;
   let major;
   let minor;
   let patch;
@@ -53,7 +54,7 @@ gulp.task('tag', () => {
       process.exit();
     }
   }
-  version = major + '.' + minor + '.' + patch;
+  version.version = major + '.' + minor + '.' + patch;
   git.tag('v' + version, argv.message, { args: '-a' }, (err) => {
     if (err) throw err;
   });
