@@ -6,7 +6,7 @@ const argv = require('yargs').argv;
 const packageJSON = require('./package.json');
 const runSequence = require('run-sequence');
 const bump = require('gulp-bump');
-let version = {};
+let version = packageJSON.version;
 
 gulp.task('default', () => {
   runSequence('tag', 'pushTag');
@@ -15,23 +15,20 @@ gulp.task('default', () => {
 
 gulp.task('tag', () => {
   // Major, Minor, patch
-  version.version = packageJSON.version;
   let major;
   let minor;
   let patch;
+  let packageBump = {};
 
   const indicies = [];
   for (let i = 0; i < version.length; i++) {
-    if (version.version[i] === '.') {
+    if (version[i] === '.') {
       indicies.push(i);
     }
   }
-  patch = version.version.substring(indicies[1] + 1, version.version.length);
-  minor = version.version.substring(indicies[0] + 1, indicies[1]);
-  major = version.version.substring(indicies[0], indicies[0] - version.version.length);
-  console.log('patch out of if: ' + patch);
-  console.log('minor out of if: ' + minor);
-  console.log('major out of it: ' + major);
+  patch = version.substring(indicies[1] + 1, version.length);
+  minor = version.substring(indicies[0] + 1, indicies[1]);
+  major = version.substring(indicies[0], indicies[0] - version.length);
 
   console.log('version number out of if: ' + major + '.' + minor + '.' + patch);
 
@@ -57,13 +54,14 @@ gulp.task('tag', () => {
       process.exit();
     }
   }
-  version.version = major + '.' + minor + '.' + patch;
-  git.tag('v' + version.version, argv.message, { args: '-a' }, (err) => {
+  version = major + '.' + minor + '.' + patch;
+  packageBump.version = version;
+  git.tag('v' + version, argv.message, { args: '-a' }, (err) => {
     if (err) throw err;
   });
   return gulp
         .src(['./package.json'])
-        .pipe(bump(version))
+        .pipe(bump(packageBump.version))
         .pipe(gulp.dest('./'));
 });
 
