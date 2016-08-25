@@ -1,3 +1,5 @@
+'use strict';
+
 const gulp = require('gulp-async-tasks')(require('gulp'));
 const git = require('gulp-git');
 const argv = require('yargs').argv;
@@ -55,7 +57,6 @@ gulp.task('tag', () => {
   git.tag('v' + version, argv.message, { args: '-a' }, (err) => {
     if (err) throw err;
   });
-
   return gulp
         .src(['./package.json'])
         .pipe(bump(version))
