@@ -3,6 +3,7 @@ const git = require('gulp-git');
 const argv = require('yargs').argv;
 const packageJSON = require('./package.json');
 const runSequence = require('run-sequence');
+const bump = require('gulp-bump');
 let version = packageJSON.version;
 
 gulp.task('default', () => {
@@ -54,6 +55,11 @@ gulp.task('tag', () => {
   git.tag('v' + version, argv.message, { args: '-a' }, (err) => {
     if (err) throw err;
   });
+
+  return gulp
+        .src(['./package.json'])
+        .pipe(bump(version))
+        .pipe(gulp.dest('./'));
 });
 
 
