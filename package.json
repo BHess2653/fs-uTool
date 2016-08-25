@@ -1,6 +1,6 @@
 {
   "name": "fs-uTool",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Utility Tool",
   "main": "src/fs-utool.js",
   "scripts": {

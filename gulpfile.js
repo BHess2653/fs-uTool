@@ -1,5 +1,5 @@
 'use strict';
-
+// Sweet god I did the thing
 const gulp = require('gulp-async-tasks')(require('gulp'));
 const git = require('gulp-git');
 const argv = require('yargs').argv;
