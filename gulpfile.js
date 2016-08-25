@@ -55,7 +55,7 @@ gulp.task('tag', () => {
     }
   }
   version.version = major + '.' + minor + '.' + patch;
-  git.tag('v' + version, argv.message, { args: '-a' }, (err) => {
+  git.tag('v' + version.version, argv.message, { args: '-a' }, (err) => {
     if (err) throw err;
   });
   return gulp
