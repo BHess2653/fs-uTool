@@ -1,4 +1,4 @@
-exports.debug = (title, obj, level = undefined) => {
+exports.debug = (title, obj) => {
   const colors = require('colors');
   const fs = require('fs');
 
@@ -14,16 +14,10 @@ exports.debug = (title, obj, level = undefined) => {
   const output = seperator + title + JSON.stringify(obj) + '\n' + time + seperator;
 
   if (process.env.DEBUG) {
-    switch (level) {
-      case 2:
-        console.error(output);
-        break;
-      case 1:
-        console.warn(output);
-        break;
-      default:
-        console.log(output);
-    }
+    fs.appendFile('lib/logs/eLog.log', output, 'utf8', (err) => {
+      if (err) throw err;
+    });
+    console.log(output);
   }
 };
 
